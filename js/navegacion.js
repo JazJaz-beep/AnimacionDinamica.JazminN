@@ -11,29 +11,43 @@ const posicion = paginas.findIndex(
     pagina => pagina.endsWith(paginaActual)
 );
 
-// Detectamos si estamos dentro de la carpeta "actividades"
-const estamosEnActividades =
-    window.location.pathname.includes("/actividades/");
+const estamosEnActividades = window.location.pathname.includes("/actividades/");
 
-// Ajustamos las rutas según dónde estamos
-const base = estamosEnActividades ? "../" : "";
+// INICIO
+document.getElementById("inicio").href = estamosEnActividades
+    ? "../index.html"
+    : "index.html";
 
-document.getElementById("inicio").href =
-    base + paginas[0];
+// ÚLTIMO
+document.getElementById("ultimo").href = estamosEnActividades
+    ? "A4.html"
+    : "actividades/A4.html";
 
-document.getElementById("ultimo").href =
-    base + paginas[paginas.length - 1];
-
+// ANTERIOR
 if (posicion > 0) {
-    document.getElementById("anterior").href =
-        base + paginas[posicion - 1];
+
+    const paginaAnterior = paginas[posicion - 1];
+
+    document.getElementById("anterior").href = estamosEnActividades
+        ? paginaAnterior === "index.html"
+            ? "../index.html"
+            : paginaAnterior.replace("actividades/", "")
+        : paginaAnterior;
+
 } else {
     document.getElementById("anterior").style.display = "none";
 }
 
+
+// SIGUIENTE
 if (posicion < paginas.length - 1) {
-    document.getElementById("siguiente").href =
-        base + paginas[posicion + 1];
+
+    const paginaSiguiente = paginas[posicion + 1];
+
+    document.getElementById("siguiente").href = estamosEnActividades
+        ? paginaSiguiente.replace("actividades/", "")
+        : paginaSiguiente;
+
 } else {
     document.getElementById("siguiente").style.display = "none";
 }
