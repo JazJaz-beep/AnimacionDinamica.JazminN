@@ -1,0 +1,201 @@
+
+
+        /* RESET*/
+
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed, 
+        figure, figcaption, footer, header, hgroup, 
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+	        margin: 0;
+	        padding: 0;
+	        border: 0;
+	        font-size: 100%;
+	        font: inherit;
+	        vertical-align: baseline;
+        }
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure, 
+        footer, header, hgroup, menu, nav, section {
+	        display: block;
+        }
+        body {
+    	    line-height: 1;
+        }   
+        ol, ul {
+	        list-style: none;
+        }
+        blockquote, q {
+	        quotes: none;
+        }
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+        	    content: '';
+        	    content: none;
+            }
+        table {
+    	    border-collapse: collapse;
+	        border-spacing: 0;
+        }
+
+
+            /*-----------------------------------
+            ------------FIN DEL RESET--------- 
+            ----------------------------------*/
+
+            
+        body {
+        background: #faf9f5;
+        color: #123d5b;
+        font-family: Arial, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .arriba {
+        width: 92%;
+        margin: auto;
+
+        height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        border-bottom: 1px dotted #7897aa;
+        }
+        
+        .arriba nav {
+        display: flex;
+        gap: 10px;
+        }
+
+        .arriba nav a {
+        font-family: "Press Start 2P", monospace;
+        font-size: 10px;
+
+        padding: 5px ;
+
+        transition: .2s;
+        }
+
+        .arriba nav a:hover {
+        border-bottom: 2px solid #6d9dca;
+        }
+
+        .nombre {
+            font-family: "Press Start 2P", monospace;
+            font-size: 10px;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        /* ================================================== */        
+            img {
+                width: 30%;
+                height: auto;
+                bottom: 50px;
+
+                position: absolute;
+            right: 50;
+                /*width: 100%;
+                width: 160px;*/
+
+            
+            }
+
+        .principal {
+        min-height: 700px;
+        margin: auto;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        text-align: center;
+}
+
+
+
+    .principal h1 {
+    font-family: Georgia, serif;
+
+    font-size: clamp(70px, 10vw, 130px);
+
+    line-height: .8;
+
+    color: #073b5d;
+
+    letter-spacing: -5px;
+    }
+
+    .principal p {
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 9px;
+
+    line-height: 1.8;
+
+    margin: 25px 0;
+    }
+
+    
+
+.button {
+    display: inline-block;
+
+    border: 2px solid #174966;
+    border-radius: 12px;
+
+    padding: 12px 22px;
+
+    font-family: "Press Start 2P", monospace;
+    font-size: 8px;
+
+    background: #faf9f5;
+
+    transition: .2s;
+}
+
+.button:hover {
+    background: #174966;
+    color: white;
+}
+
+
+
+
+
+        .pie {
+        /*grid-column: 1 / -1;*/
+
+        border-top: 1px solid #0a0a0b;
+        border-radius: 1cm;
+
+        padding: 20px;
+        padding-left: 50px;
+        padding-right: 50px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        font-family: "Press Start 2P", monospace;
+
+        font-size: 10px;
+}
+

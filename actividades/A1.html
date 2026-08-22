@@ -1,0 +1,104 @@
+<DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title> Mi primera pagina</title>
+        <style> 
+            body{
+                background-color: rgb(17, 12, 38);
+                text-align: center;
+                color:rgb(47, 47, 255);
+            }
+            h1{
+                background-color: rgb(232, 158, 255);
+                
+            }
+
+            p{
+                color: blueviolet;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 20px;
+            }
+
+
+        .arriba {
+        width: 92%;
+        margin: auto;
+
+        height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        border-bottom: 1px dotted #7897aa;
+        }
+        
+        .arriba nav {
+            font-family: 'Courier New', Courier, monospace;
+        display: flex;
+        gap: 10px;
+        }
+
+        .arriba nav a {
+        font-size: 15px;
+
+        padding: 5px ;
+
+        transition: .2s;
+        }
+
+        a {
+  text-decoration: none;
+}
+
+        .arriba nav a:hover {
+        border-bottom: 2px solid #6d9dca;
+        }
+        a:visited {
+        color: rgb(127, 122, 255); /* Cambia el color del enlace visitado */
+        text-decoration: none;
+        }
+        a:hover {
+        color: rgb(50, 20, 168); /* Cambia el color del enlace cuando el cursor pasa por encima */
+        }
+        a:active {
+        color: rgb(127, 122, 255); /* Cambia el color del enlace activo (cuando se hace clic) */
+        }
+
+        </style>
+    </head>
+    <body>
+        <header class="arriba">
+
+            <div class="nombre">
+                J N H
+            </div>
+
+            <nav>
+                 <a href="#" id="inicio" >INICIO</a>
+                 <a href="#" id="anterior">ANTERIOR</a>
+                <a href="#" id="siguiente" >SIGUIENTE</a>
+                
+                
+                <a href="#"id="ultimo" >ULTIMO</a>
+            </nav>
+
+        </header>
+        <h1>
+            Bienvenido a mi pagina
+        </h1>
+        <img src="https://i.pinimg.com/736x/e9/70/a7/e970a70d773161d1e87266f1682c5e9a.jpg" alt="Texto descriptivo">
+        <p> Hola este es un parrafo
+        </p>
+        <ol>
+            <li> manzana</li>
+            <li> pera</li>
+            <li> perejil</li>
+            <li><a href="https://github.com/JazJaz-beep?tab=repositories">mi github</a></li>
+        </ol>
+
+        <script src="../js/navegacion.js"></script>
+
+    </body>
+    </html>
+

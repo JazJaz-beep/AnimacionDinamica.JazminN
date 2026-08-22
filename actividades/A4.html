@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pagina 4</title>
+  <style>
+    body{
+        background-color: rgb(221, 207, 207);
+        text-align: center;
+    }
+      canvas{
+          border: 3px solid rgb(255, 136, 0);
+          background-color: rgb(88, 183, 255);
+      }
+
+
+
+
+      .nombre{
+        color: rgb(252, 147, 0);
+      }  
+      .arriba {
+        width: 92%;
+        margin: auto;
+
+        height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        border-bottom: 1px dotted #7897aa;
+        }
+        
+        .arriba nav {
+            font-family: 'Courier New', Courier, monospace;
+        display: flex;
+        gap: 10px;
+        }
+
+        .arriba nav a {
+        font-size: 15px;
+
+        padding: 5px ;
+
+        transition: .2s;
+        text-decoration: none;
+        
+      }
+
+        .arriba nav a:hover {
+        border-bottom: 3px solid #6d9dca;
+        }
+        a:visited {
+        color: rgb(127, 122, 255); /* Cambia el color del enlace visitado */
+        text-decoration: none;
+        }
+        a:hover {
+        color: rgb(50, 20, 168); /* Cambia el color del enlace cuando el cursor pasa por encima */
+        }
+        a:active {
+        color: rgb(127, 122, 255); /* Cambia el color del enlace activo (cuando se hace clic) */
+        }
+
+        </style> 
+  </style>
+
+<script>
+    window.onload=function(){}
+    var x=1;
+    var dx=-2;
+
+
+    function animate(){
+        requestAnimationFrame(animate);
+        //console.log('animando');
+            var canvas = document.getElementById("micanvas");
+            var context = canvas.getContext("2d");
+            context.fillStyle="rgb(213, 72, 1)";//cuwdro 1
+            context.clearRect(0,0, innerWidth, innerHeight);
+            context.fillRect(x+50,230,100,100);//naranja
+            context.fillStyle="rgb(213, 72, 1)";//azul
+            context.fillRect(x+50,280,140,50);
+            context.fillStyle="rgb(67, 67, 67)";//gris
+            context.fillRect(x+140,230,50,50);
+            context.fillStyle="rgb(213, 72, 1)";//rojo
+            context.fillRect(x+95,180,350,50);
+            context.fillStyle="rgb(252, 148, 1)";//verde
+            context.fillRect(x+190,230,150,50);
+            context.fillStyle="rgb(213, 72, 1)";//morado
+            context.fillRect(x+340,230,150,50);
+            context.fillStyle="rgb(252, 148, 1)";//verde
+            context.fillRect(x+490,180,100,200);
+            //V2 EMO, POZOLE FURRO THERIAN ,
+            context.fillStyle="rgb(252, 148, 1)";//azul
+            context.fillRect(x+290,280,150,50);
+            context.fillStyle="rgb(213, 72, 1)";//Amariillo
+            context.fillRect(x+440,280,50,50);
+            context.fillStyle="rgb(252, 148, 1)";//verde
+            context.fillRect(x+190,280,50,50);
+            context.fillStyle="rgb(250, 212, 137)";//naranja
+            context.fillRect(x+240,280,50,50);
+            context.fillStyle="rgb(252, 147, 0)";//azul
+            context.fillRect(x+100,330,90,50);
+            context.fillStyle="rgb(250, 212, 137)";//rojo
+            context.fillRect(x+190,330,250,50);
+            context.fillStyle="rgb(251, 212, 137)";//verde
+            context.fillRect(x+240,380,150,50);
+            context.fillStyle="rgb(252, 147, 0)";//aazul
+            context.fillRect(x+190,380,50,50);
+            context.fillStyle="rgb(252, 147, 0)";//rojo
+            context.fillRect(x+190,430,100,50);
+            context.fillStyle="rgb(252, 147, 0)";//verde
+            context.fillRect(x+340,430,50,50);
+            context.fillStyle="rgb(252, 147, 0)";//verde
+            context.fillRect(x+240,480,50,50);
+            context.fillStyle="rgb(214, 71, 1)";//morado
+            context.fillRect(x+150,130,190,50);
+            context.fillStyle="rgb(252, 147, 0)";//amarillo
+            context.fillRect(x+340,130,105,50);
+            context.fillStyle="rgb(252, 147, 0)";//naranja
+            context.fillRect(x+245,80,200,50);
+            context.fillStyle="rgb(252, 147, 0)";//azul
+            context.fillRect(x+295,30,100,50);
+            context.fillStyle="rgb(252, 147, 0)";//rojo
+            context.fillRect(x+545,380,50,50);
+            context.fillStyle="rgb(252, 147, 0)";//naranja
+            context.fillRect(x+590,430,100,50);
+            context.fillStyle="rgb(252, 147, 0)";//amarillo
+            context.fillRect(x+590,280,50,150);
+            context.fillStyle="rgb(252, 147, 0)";//naranja
+            context.fillRect(x+590,180,50,50);
+            context.fillStyle="rgb(252, 147, 0)";//naranja
+            context.fillRect(x+540,130,100,50);
+            context.fillStyle="rgb(252, 147, 0)";//amarillo
+            context.fillRect(x+590,80,100,50);
+            
+//los cuadrados son 50 x 50 cad uno jjjj
+            context.font = '40pt Comic Sans MS';
+            context.fillStyle = 'blue';
+            context.fillText('Hello World!', x+280, 580);
+
+          if (x < -690) { x = 850; }
+          x+=dx;
+            }
+            
+        animate();
+
+
+</script>
+
+  </head>
+<body>
+
+        <header class="arriba">
+
+            <div class="nombre">
+                J N H
+            </div>
+
+            <nav>
+                 <a href="#" id="inicio" >INICIO</a>
+                 <a href="#" id="anterior">ANTERIOR</a>
+                <a href="#" id="siguiente" >SIGUIENTE</a>
+                
+                <a href="#"id="ultimo" >ULTIMO</a>
+            </nav>
+
+        </header>
+      </br>
+    </br>
+    <canvas id="micanvas" width="800" height="600"></canvas>
+    <script src="../js/navegacion.js"></script>
+</body>
+</html>
