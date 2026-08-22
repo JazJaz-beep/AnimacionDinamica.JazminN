@@ -1,53 +1,57 @@
 const paginas = [
     "index.html",
-    "actividades/A1.html",
-    "actividades/A2.html",
-    "actividades/A4.html"
+    "A1.html",
+    "A2.html",
+    "A4.html"
 ];
 
 const paginaActual = window.location.pathname.split("/").pop();
 
-const posicion = paginas.findIndex(
-    pagina => pagina.endsWith(paginaActual)
-);
+const posicion = paginas.indexOf(paginaActual);
 
-const estamosEnActividades = window.location.pathname.includes("/actividades/");
+const estamosEnActividades =
+    window.location.pathname.includes("/actividades/");
+
 
 // INICIO
-document.getElementById("inicio").href = estamosEnActividades
-    ? "../index.html"
-    : "index.html";
+document.getElementById("inicio").href =
+    estamosEnActividades ? "../index.html" : "index.html";
 
-// ÚLTIMO
-document.getElementById("ultimo").href = estamosEnActividades
-    ? "A4.html"
-    : "actividades/A4.html";
 
 // ANTERIOR
 if (posicion > 0) {
 
-    const paginaAnterior = paginas[posicion - 1];
-
-    document.getElementById("anterior").href = estamosEnActividades
-        ? paginaAnterior === "index.html"
-            ? "../index.html"
-            : paginaAnterior.replace("actividades/", "")
-        : paginaAnterior;
+    document.getElementById("anterior").href =
+        estamosEnActividades
+            ? paginas[posicion - 1] === "index.html"
+                ? "../index.html"
+                : paginas[posicion - 1]
+            : "actividades/" + paginas[posicion - 1];
 
 } else {
+
     document.getElementById("anterior").style.display = "none";
+
 }
 
 
 // SIGUIENTE
 if (posicion < paginas.length - 1) {
 
-    const paginaSiguiente = paginas[posicion + 1];
-
-    document.getElementById("siguiente").href = estamosEnActividades
-        ? paginaSiguiente.replace("actividades/", "")
-        : paginaSiguiente;
+    document.getElementById("siguiente").href =
+        estamosEnActividades
+            ? paginas[posicion + 1]
+            : "actividades/" + paginas[posicion + 1];
 
 } else {
+
     document.getElementById("siguiente").style.display = "none";
+
 }
+
+
+// ÚLTIMO
+document.getElementById("ultimo").href =
+    estamosEnActividades
+        ? "A4.html"
+        : "actividades/A4.html";
