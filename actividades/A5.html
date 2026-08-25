@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Part2 - Reto cnavas </title>
+  <style>
+    body{
+        background-color: #1a1831;
+        text-align: center;
+    }
+      canvas{
+          border: 3px solid rgb(157, 51, 184);
+          background-color: #ffffff;
+      }
+
+
+
+
+      .nombre{
+        color:#C490D1;
+      }  
+      .arriba {
+        width: 92%;
+        margin: auto;
+
+        height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        border-bottom: 1px dotted #C490D1;
+        }
+        
+        .arriba nav {
+            font-family: 'Courier New', Courier, monospace;
+        display: flex;
+        gap: 10px;
+        }
+
+        .arriba nav a {
+        font-size: 15px;
+
+        padding: 5px ;
+
+        transition: .2s;
+        text-decoration: none;
+        text-emphasis-color:#C490D1;
+        //color: #534BA8;
+        
+      }
+
+        .arriba nav a:hover {
+        border-bottom: 3px solid #C490D1;
+        }
+        a:visited {
+        color: #F1FFF8; /* Cambia el color del enlace visitado */
+        text-decoration: none;
+        }
+        a:hover {
+        color: #C490D1; /* Cambia el color del enlace cuando el cursor pasa por encima */
+        }
+        a:active {
+        color: #7D8CC4; /* Cambia el color del enlace activo (cuando se hace clic) */
+        }
+
+        </style> 
+
+<script>
+        var x=Math.random() * 650;
+        var y=200;
+        var dx=3;
+        var dy=3;
+
+        var x2=Math.random() * 650;
+        var y2=200;
+        var dx2=2;
+        var dy2=2;
+
+        var imagen= new Image();
+        imagen.src = "../IMG/TevoyAagarrarUnPoquito.jpg"; 
+        var imagen2= new Image(); // variable para guardar la imagen
+        imagen2.src = "../IMG/denegado.jpg"; // fuente de donde toma la imagen
+            
+        function animate(){    
+            requestAnimationFrame(animate);
+            var canvas = document.getElementById("micanvas");
+            var context = canvas.getContext("2d");
+            context.clearRect(0, 0, innerWidth, innerHeight);
+            context.drawImage(imagen2, x2+50, y2, 150, 150); //<== para poner imagen en el canvas
+            context.drawImage(imagen, x-20, y-50, 150, 150); 
+            
+            
+
+            //imagen2.onload = function(){
+            //};
+
+            if (x > 700 || x < 0){
+                dx= -dx;
+            }
+           x+=dx;
+
+           if (y > 450 || y < 0){
+                dy= -dy;
+            }
+           y+=-dy;
+
+
+           if (x2 > 700 || x2 < 0){
+                dx2= -dx2;
+            }
+           x2+=dx2;
+
+           if (y2 > 450 || y2 < 0){
+                dy2= -dy2;
+            }
+           y2+=dy2;
+           
+        }
+        animate();
+</script>
+
+  </head>
+<body>
+  <header class="arriba">
+
+            <div class="nombre">
+                J N H
+            </div>
+
+            <nav>
+                 <a href="#" id="inicio" >INICIO</a>
+                 <a href="#" id="anterior">ANTERIOR</a>
+                <a href="#" id="siguiente" >SIGUIENTE</a>
+                
+                <a href="#"id="ultimo" >ULTIMO</a>
+            </nav>
+
+        </header>
+      </br>
+    </br>
+
+
+   <canvas id="micanvas" width="800" height="600"></canvas>
+
+   <script src="../js/navegacion.js"></script>
+   
+</body>
+</html>
