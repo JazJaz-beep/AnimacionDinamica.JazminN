@@ -5,19 +5,19 @@
   <title>Part2 - Reto cnavas </title>
   <style>
     body{
-        background-color: #393a4f;
+        background-color: #1a1831;
         text-align: center;
     }
       canvas{
-          border: 3px solid rgb(164, 168, 241);
-          background-color: #BEEF8D;
+          border: 3px solid rgb(157, 51, 184);
+          background-color: #ffffff;
       }
 
 
 
 
       .nombre{
-        color:#a59a31;
+        color:#C490D1;
       }  
       .arriba {
         width: 92%;
@@ -29,7 +29,7 @@
         align-items: center;
         justify-content: space-between;
 
-        border-bottom: 1px dotted #7897aa;
+        border-bottom: 1px dotted #C490D1;
         }
         
         .arriba nav {
@@ -45,22 +45,23 @@
 
         transition: .2s;
         text-decoration: none;
-        color:rgb(136, 72, 1);
+        text-emphasis-color:#C490D1;
+        //color: #534BA8;
         
       }
 
         .arriba nav a:hover {
-        border-bottom: 3px solid #6d9dca;
+        border-bottom: 3px solid #C490D1;
         }
         a:visited {
-        color: #a4a8f1; /* Cambia el color del enlace visitado */
+        color: #F1FFF8; /* Cambia el color del enlace visitado */
         text-decoration: none;
         }
         a:hover {
-        color: #a4a8f1; /* Cambia el color del enlace cuando el cursor pasa por encima */
+        color: #C490D1; /* Cambia el color del enlace cuando el cursor pasa por encima */
         }
         a:active {
-        color: #a4a8f1; /* Cambia el color del enlace activo (cuando se hace clic) */
+        color: #7D8CC4; /* Cambia el color del enlace activo (cuando se hace clic) */
         }
 
         </style> 
@@ -68,8 +69,8 @@
 <script>
         var x=Math.random() * 650;
         var y=200;
-        var dx=2;
-        var dy=2;
+        var dx=3;
+        var dy=3;
 
         var x2=Math.random() * 650;
         var y2=200;
@@ -86,8 +87,9 @@
             var canvas = document.getElementById("micanvas");
             var context = canvas.getContext("2d");
             context.clearRect(0, 0, innerWidth, innerHeight);
-            context.drawImage(imagen, x-20, y-50, 150, 150); 
             context.drawImage(imagen2, x2+50, y2, 150, 150); //<== para poner imagen en el canvas
+            context.drawImage(imagen, x-20, y-50, 150, 150); 
+            
             
 
             //imagen2.onload = function(){
@@ -101,13 +103,13 @@
            if (y > 450 || y < 0){
                 dy= -dy;
             }
-           y+=dy;
+           y+=-dy;
 
 
            if (x2 > 700 || x2 < 0){
                 dx2= -dx2;
             }
-           x2+=-dx2;
+           x2+=dx2;
 
            if (y2 > 450 || y2 < 0){
                 dy2= -dy2;
