@@ -3,7 +3,8 @@ const paginas = [
     "A1.html",
     "A2.html",
     "A4.html",
-    "A5.html"
+    "A5.html",
+    "08-canvasInteractivo.html"
 ];
 
 const paginaActual = window.location.pathname.split("/").pop();
