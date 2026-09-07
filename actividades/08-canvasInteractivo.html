@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Key Codes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    body{
+        background-color: #fcf8df;
+        text-align: center;
+        color: #0ba3e9;
+    }
+      canvas{
+          border: 3px solid #efe37d;
+          background-color: #ffffff;
+      }
+
+
+
+
+      .nombre{
+        color:#a0b769;
+      }  
+      .arriba {
+        width: 92%;
+        margin: auto;
+
+        height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        border-bottom: 1px dotted #75baff;
+        }
+        
+        .arriba nav {
+            font-family: 'Courier New', Courier, monospace;
+        display: flex;
+        gap: 10px;
+        }
+
+        .arriba nav a {
+        font-size: 15px;
+
+        padding: 5px ;
+
+        transition: .2s;
+        text-decoration: none;
+        text-emphasis-color:#d67531;
+        color: #ffbc92;
+        
+      }
+
+        .arriba nav a:hover {
+        border-bottom: 3px solid #efe37d;
+        }
+        a:visited {
+        color: #a0b769; /* Cambia el color del enlace visitado */
+        text-decoration: none;
+        }
+        a:hover {
+        color: #efe37d; /* Cambia el color del enlace cuando el cursor pasa por encima */
+        }
+        a:active {
+        color: #efe37d; /* Cambia el color del enlace activo (cuando se hace clic) */
+        }
+
+        </style> 
+  </head>
+  <body>
+     <header class="arriba">
+
+            <div class="nombre">
+                J N H
+            </div>
+
+            <nav>
+                 <a href="#" id="inicio" >INICIO</a>
+                 <a href="#" id="anterior">ANTERIOR</a>
+                <a href="#" id="siguiente" >SIGUIENTE</a>
+                
+                <a href="#"id="ultimo" >ULTIMO</a>
+            </nav>
+
+        </header>
+      </br>
+    </br>
+
+
+
+
+    <canvas id="canvas" width="1100" height="600"></canvas>
+    
+    <aside>
+      <BR>
+      Press arrow keys 
+      <BR>
+      &
+      <BR>
+        A  B  C  D  E  F  G  H  I.
+    </aside>
+    
+
+    <script src="../js/keycode.js"></script>
+    <script>
+    window.onload = function () {
+      var canvas = document.getElementById("canvas");
+      var context = canvas.getContext("2d");
+      var x = 445;
+      var y = 150;
+      context.font = '40pt Monotype Corsiva';
+      context.fillStyle = '#75baff';
+      context.fillText('Invernadero', x, y); //<== para poner texto en el canvas
+
+      var imagen= new Image(); // variable para guardar la imagen
+      imagen.src = "../IMG/INV.jpg";  // fuente de donde toma la imagen
+
+      var imagenA= new Image(); // variable para guardar la imagen
+      imagenA.src = "../IMG/A.jpg";  // fuente de donde toma la imagen
+
+      var imagenB= new Image(); // variable para guardar la imagen
+      imagenB.src = "../IMG/B.jpg";  // fuente de donde toma la imagen
+
+      var imagenC= new Image(); // variable para guardar la imagen
+      imagenC.src = "../IMG/C.jpg";  // fuente de donde toma la imagen
+
+      var imagenD= new Image(); // variable para guardar la imagen
+      imagenD.src = "../IMG/D.jpg";  // fuente de donde toma la imagen
+
+      var imagenE= new Image(); // variable para guardar la imagen
+      imagenE.src = "../IMG/E.jpg";  // fuente de donde toma la imagen
+
+      var imagenF= new Image(); // variable para guardar la imagen
+      imagenF.src = "../IMG/F.jpg";  // fuente de donde toma la imagen
+
+      var imagenG= new Image(); // variable para guardar la imagen
+      imagenG.src = "../IMG/G.jpg";  // fuente de donde toma la imagen
+
+      var imagenH= new Image(); // variable para guardar la imagen
+      imagenH.src = "../IMG/H.jpg";  // fuente de donde toma la imagen
+
+      var imagenI= new Image(); // variable para guardar la imagen
+      imagenI.src = "../IMG/I.jpg";  // fuente de donde toma la imagen
+
+      imagen.onload = function(){
+        context.drawImage(imagen, x-30, y+20, 300, 300); //<== para poner imagen en el canvas
+      };
+
+      context.fillRect(x-95,y+30,100,100);
+
+      function onKeyboardEvent (event) {
+        switch (event.keyCode) {
+        case keycode.UP:
+          console.log("up!");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          y-=5;
+          context.fillRect(x,y,100,100);
+          break;
+        case keycode.DOWN:
+          console.log("down!");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          y+=5;
+          context.fillRect(x,y,100,100);
+          break;
+        case keycode.LEFT:
+          console.log("left!");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          x-=5;
+          context.fillRect(x,y,100,100);
+          break;
+        case keycode.RIGHT:
+          console.log("right!");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          x+=5;
+          context.fillRect(x,y,100,100);
+          break;
+        case keycode.SPACE:
+          console.log("Jump!");
+          break;
+        case keycode.A:
+          console.log("Letra A");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          context.fillText('Azucena', x, y);
+          context.drawImage(imagenA, x, y+50, 200, 200); 
+          break;
+        case keycode.B:
+          console.log("Letra B");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          context.fillText('Begonia', x, y);
+          context.drawImage(imagenB, x, y+50, 200, 300); 
+
+
+          break;
+        case keycode.C:
+          console.log("Letra C");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          context.fillText('Clavel', x, y);
+          context.drawImage(imagenC, x, y+50, 200, 225); 
+          break;
+
+          case keycode.D:
+          console.log("Letra D");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          context.fillText('Dalia', x, y);
+          context.drawImage(imagenD, x, y+50, 200, 225); 
+          break;
+
+          case keycode.E:
+          console.log("Letra E");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          context.fillText('Edelweiss', x, y);
+          context.drawImage(imagenE, x, y+50, 200, 300); 
+          break;
+
+          case keycode.F:
+          console.log("Letra F");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          context.fillText('Fucsia', x, y);
+          context.drawImage(imagenF, x, y+50, 200, 300); 
+          break;
+
+          case keycode.G:
+          console.log("Letra G");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          context.fillText('Geranio', x, y);
+          context.drawImage(imagenG, x, y+50, 200, 300); 
+          break;
+
+          case keycode.H:
+          console.log("Letra H");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          context.fillText('Hortensia', x, y);
+          context.drawImage(imagenH, x, y+50, 200, 275); 
+          break;
+
+          case keycode.I:
+          console.log("Letra I");
+          context.clearRect(0, 0, innerWidth, innerHeight);
+          context.fillText('Iris', x, y);
+          context.drawImage(imagenI, x-30, y+50, 250, 250); 
+          break;
+          
+        default:
+          console.log(event.keyCode);
+        }
+      }
+
+      window.addEventListener('keydown', onKeyboardEvent, false);
+    };
+    </script>
+
+    <script src="../js/navegacion.js"></script>
+  </body>
+</html>
