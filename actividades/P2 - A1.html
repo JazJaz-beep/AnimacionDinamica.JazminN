@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+
+
+<style>
+    body{
+        background-color: #cdecb2;
+        color: #0057d9;
+        text-align: center;
+    }
+      canvas{
+          border: 3px solid #00b8f2;
+          background-color: #ffffff;
+      }
+
+
+
+
+      .nombre{
+        color:#00b8f2;
+      }  
+      .arriba {
+        width: 92%;
+        margin: auto;
+
+        height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        border-bottom: 1px dotted #6abd18;
+        }
+        
+        .arriba nav {
+            font-family: 'Courier New', Courier, monospace;
+        display: flex;
+        gap: 10px;
+        }
+
+        .arriba nav a {
+        font-size: 15px;
+
+        padding: 5px ;
+
+        transition: .2s;
+        text-decoration: none;
+        text-emphasis-color:#00b8f2;
+        color: #f46a1a;
+        
+      }
+
+        .arriba nav a:hover {
+        border-bottom: 3px solid #6abd18;
+        }
+        a:visited {
+        color: #6abd18; /* Cambia el color del enlace visitado */
+        text-decoration: none;
+        }
+        a:hover {
+        color: #00b8f2; /* Cambia el color del enlace cuando el cursor pasa por encima */
+        }
+        a:active {
+        color: #6abd18; /* Cambia el color del enlace activo (cuando se hace clic) */
+        }
+
+        </style> 
+
+
+
+  <head>
+    <meta charset="utf-8">
+    <title>Rotate to Mouse</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <header class="arriba">
+
+            <div class="nombre">
+                J N H
+            </div>
+
+            <nav>
+                 <a href="#" id="inicio" >INICIO</a>
+                 <a href="#" id="anterior">ANTERIOR</a>
+                <a href="#" id="siguiente" >SIGUIENTE</a>
+                
+                <a href="#"id="ultimo" >ULTIMO</a>
+            </nav>
+
+        </header>
+      </br>
+    </br>
+
+
+    <canvas id="canvas" width="900" height="700"></canvas>
+    <aside>Move mouse on canvas element.</aside>
+    
+    <script src="../js/util.js"></script>
+    <script src="../js/gatoFlecha.js"></script>
+    <script src="../js/navegacion.js"></script>
+    <script>
+    window.onload = function () {
+      var canvas = document.getElementById('canvas'),
+          context = canvas.getContext('2d'),
+          mouse = utils.captureMouse(canvas),
+          arrow = new Arrow();
+        
+      arrow.x = canvas.width / 2;
+      arrow.y = canvas.height / 2;
+        
+      (function drawFrame () {
+        window.requestAnimationFrame(drawFrame, canvas);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+          
+        var dx = mouse.x - arrow.x,
+            dy = mouse.y - arrow.y;
+          
+        arrow.rotation = Math.atan2(dy, dx); //radians
+        arrow.draw(context);
+      }());
+    };
+    </script>
+  </body>
+</html>
