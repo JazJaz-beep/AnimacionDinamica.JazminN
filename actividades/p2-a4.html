@@ -1,0 +1,526 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figuras</title>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #c5e0dc;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: Georgia, serif;
+        }
+
+        h1 {
+            color: #795548;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #795548;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        /* BOTONES */
+
+        .botones {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0 20px;
+            max-width: 900px;
+        }
+
+        button {
+            background-color: #fff5e6;
+            color: #795548;
+            border: 2px solid #795548;
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #f6c85f;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        /* CANVAS */
+
+        canvas {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            background-color: #fff5e6;
+            border: 3px solid #795548;
+            border-radius: 8px;
+        }
+
+        #mensaje {
+            margin-top: 12px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>A5 - Dibujo de figuras en el canvas</h1>
+
+    <p>Elige una figura</p>
+
+    <!-- BOTONES DE LA GALERÍA -->
+
+    <div class="botones">
+        <button onclick="mostrarFigura('casa')">Casa</button>
+        <button onclick="mostrarFigura('hongo')">Hongo</button>
+        <button onclick="mostrarFigura('estrella')">Estrella</button>
+        <button onclick="mostrarFigura('luna')">Luna</button>
+        <button onclick="mostrarFigura('gato')">Gato</button>
+        <button onclick="mostrarFigura('todas')">Mostrar todas</button>
+    </div>
+
+    <!-- CANVAS -->
+
+    <canvas id="galeria" width="900" height="720"></canvas>
+
+   
+
+    <script>
+
+    const canvas = document.getElementById("galeria");
+    const ctx = canvas.getContext("2d");
+
+    // ESTILO GENERAL DE LOS CONTORNOS
+
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#795548";
+
+    // ==================================================
+    // CASA
+    // ==================================================
+
+    function dibujarCasa() {
+
+        // Cuerpo
+        ctx.beginPath();
+        ctx.moveTo(650, 205);
+        ctx.lineTo(780, 205);
+        ctx.lineTo(780, 300);
+        ctx.lineTo(650, 300);
+        ctx.closePath();
+
+        ctx.fillStyle = "#e8b98b";
+        ctx.fill();
+        ctx.stroke();
+
+        // Techo
+        ctx.beginPath();
+        ctx.moveTo(635, 205);
+        ctx.lineTo(715, 140);
+        ctx.lineTo(795, 205);
+        ctx.closePath();
+
+        ctx.fillStyle = "#c76d59";
+        ctx.fill();
+        ctx.stroke();
+
+        // Puerta
+        ctx.beginPath();
+        ctx.moveTo(695, 300);
+        ctx.lineTo(695, 260);
+        ctx.lineTo(725, 260);
+        ctx.lineTo(725, 300);
+        ctx.closePath();
+
+        ctx.fillStyle = "#96634b";
+        ctx.fill();
+        ctx.stroke();
+
+        // VENTANA
+        ctx.beginPath();
+        ctx.beginPath();
+        ctx.moveTo(695, 220);
+        ctx.lineTo(725, 220);
+        ctx.lineTo(725, 250);
+        ctx.lineTo(695, 250);
+        ctx.closePath();
+
+ctx.fillStyle = "#9bc9c5";
+ctx.fill();
+
+ctx.strokeStyle = "#96634b";
+
+ctx.stroke();
+
+    
+    }
+
+    // ==================================================
+    // HONGO
+    // ==================================================
+
+    function dibujarHongo() {
+
+        // Tallo
+        ctx.beginPath();
+        ctx.moveTo(650, 600);
+        ctx.lineTo(655, 515);
+        ctx.quadraticCurveTo(680, 505, 705, 515);
+        ctx.lineTo(710, 600);
+        ctx.closePath();
+
+        ctx.fillStyle = "#f7eee0";
+        ctx.fill();
+        ctx.stroke();
+
+       // SOMBRERO DEL HONGO
+        ctx.beginPath();
+
+        ctx.moveTo(600, 515);
+        
+        ctx.quadraticCurveTo(600, 450, 635, 435);
+        ctx.quadraticCurveTo(675, 415, 715, 435);
+        ctx.quadraticCurveTo(750, 450, 750, 515);
+
+        ctx.lineTo(600, 515);
+
+        ctx.closePath();
+
+        ctx.fillStyle = "#c76d59";
+        ctx.fill();
+        ctx.stroke();
+        // Mancha 1
+        ctx.beginPath();
+        ctx.arc(630, 475, 13, 0, Math.PI * 2);
+        ctx.fillStyle = "#fff5e6";
+        ctx.fill();
+        ctx.stroke();
+
+        // Mancha 2
+        ctx.beginPath();
+        ctx.arc(675, 455, 9, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Mancha 3
+        ctx.beginPath();
+        ctx.arc(720, 485, 11, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Mancha 4
+        ctx.beginPath();
+        ctx.arc(675, 495, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    // ==================================================
+    // ESTRELLA
+    // ==================================================
+
+    function dibujarEstrella() {
+
+        ctx.beginPath();
+
+        ctx.moveTo(445, 285);
+        ctx.lineTo(461, 325);
+        ctx.lineTo(505, 328);
+        ctx.lineTo(472, 356);
+        ctx.lineTo(483, 399);
+        ctx.lineTo(445, 375);
+        ctx.lineTo(408, 399);
+        ctx.lineTo(419, 356);
+        ctx.lineTo(385, 328);
+        ctx.lineTo(429, 325);
+
+        ctx.closePath();
+
+        ctx.fillStyle = "#e8b85e";
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    // ==================================================
+    // LUNA
+    // ==================================================
+
+    function dibujarLuna() {
+
+        // Círculo principal
+        ctx.beginPath();
+        ctx.arc(145, 140, 55, 0, Math.PI * 2);
+
+        ctx.fillStyle = "#f6c85f";
+        ctx.fill();
+        ctx.stroke();
+
+        // Círculo que recorta la luna
+        ctx.beginPath();
+        ctx.arc(170, 120, 55, 0, Math.PI * 2);
+
+        ctx.fillStyle = "#fff5e6";
+        ctx.fill();
+    }
+
+    // ==================================================
+    // GATO
+    // ==================================================
+
+    function dibujarGato() {
+
+        // Oreja izquierda
+ctx.beginPath();
+ctx.moveTo(115, 525);
+ctx.lineTo(120, 465);
+ctx.lineTo(175, 505);
+ctx.closePath();
+
+ctx.fillStyle = "#383b45";
+ctx.fill();
+ctx.stroke();
+
+// Oreja derecha
+ctx.beginPath();
+ctx.moveTo(165, 505);
+ctx.lineTo(220, 465);
+ctx.lineTo(225, 525);
+ctx.closePath();
+
+ctx.fillStyle = "#383b45";
+ctx.fill();
+ctx.stroke();
+
+        // Cabeza
+        ctx.beginPath();
+        ctx.arc(170, 550, 62, 0, Math.PI * 2);
+
+        ctx.fillStyle = "#383b45";
+        ctx.fill();
+        ctx.stroke();
+
+        // Ojo izquierdo
+        ctx.beginPath();
+        ctx.arc(148, 540, 8, 0, Math.PI * 2);
+
+        ctx.fillStyle = "#a8cba6";
+        ctx.fill();
+        ctx.stroke();
+
+        // Brillo del ojo izquierdo
+        ctx.beginPath();
+        ctx.arc(150, 537, 3.5, 0, Math.PI * 2);
+
+        ctx.fillStyle = "#ffffff";
+        ctx.fill();
+      
+        ctx.stroke();
+
+        // Segundo brillo
+        ctx.beginPath();
+        ctx.arc(147, 543, 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Ojo derecho
+        ctx.beginPath();
+        ctx.arc(192, 540, 8, 0, Math.PI * 2);
+
+        ctx.fillStyle = "#a8cba6";
+        ctx.fill();
+        ctx.stroke();
+
+        // Brillo del ojo derecho
+        ctx.beginPath();
+        ctx.arc(194, 537, 3.5, 0, Math.PI * 2);
+
+        ctx.fillStyle = "#ffffff";
+        ctx.fill();
+        ctx.stroke();
+
+        // Segundo brillo
+        ctx.beginPath();
+        ctx.arc(191, 543, 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Nariz
+        ctx.beginPath();
+        ctx.arc(170, 556, 5, 0, Math.PI * 2);
+
+        ctx.fillStyle = "#e6a58f";
+        ctx.fill();
+        ctx.stroke();
+
+        // Boca
+        ctx.beginPath();
+
+        ctx.moveTo(170, 561);
+        ctx.lineTo(170, 565);
+        ctx.quadraticCurveTo(163, 572, 158, 565);
+
+        ctx.moveTo(170, 565);
+        ctx.quadraticCurveTo(177, 572, 182, 565);
+
+        ctx.strokeStyle = "#fff5e6";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Restaurar el color de contorno general
+        ctx.strokeStyle = "#795548";
+    }
+
+    // ==================================================
+    // MOSTRAR TODAS LAS FIGURAS
+    // ==================================================
+
+    function dibujarZorro() {
+
+ctx.beginPath();
+
+ctx.moveTo(400, 250);
+ctx.lineTo(461, 325);
+ctx.lineTo(505, 328);
+ctx.lineTo(472, 356);
+ctx.lineTo(483, 399);
+ctx.lineTo(445, 375);
+ctx.lineTo(408, 399);
+ctx.lineTo(419, 356);
+ctx.lineTo(385, 328);
+ctx.lineTo(429, 325);
+
+ctx.closePath();
+
+ctx.fillStyle = "#e8b85e";
+ctx.fill();
+ctx.stroke();
+}
+
+    function dibujarTodas() {
+
+        dibujarLuna();
+        dibujarCasa();
+        dibujarEstrella();
+        dibujarHongo();
+        dibujarGato();
+    }
+
+    // ==================================================
+    // CONTROL DE LOS BOTONES
+    // ==================================================
+
+    
+    function dibujarGrande(funcionDibujo, escala, x, y) {
+
+// Guardar el estado actual
+ctx.save();
+
+// Limpiar el canvas
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+// Mover el origen al centro del canvas
+ctx.translate(450, 360);
+
+// Ampliar la figura
+ctx.scale(escala, escala);
+
+// Mover la figura desde su posición original
+ctx.translate(-x, -y);
+
+// Dibujar la figura
+funcionDibujo();
+
+// Recuperar el estado anterior
+ctx.restore();
+}
+
+
+
+
+    //===================================================
+
+   
+    function mostrarFigura(figura) {
+
+// Limpiar el canvas
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+// Restaurar estilos
+ctx.strokeStyle = "#795548";
+ctx.lineWidth = 2;
+
+switch (figura) {
+
+    case "casa":
+
+        // La casa originalmente está alrededor de 715, 220
+        // Ahora aparecerá grande y centrada
+        dibujarGrande(dibujarCasa, 2, 715, 220);
+        break;
+
+
+    case "hongo":
+
+        // El hongo originalmente está alrededor de 680, 515
+        dibujarGrande(dibujarHongo, 1.7, 680, 515);
+        break;
+
+
+    case "estrella":
+
+        // La estrella originalmente está alrededor de 445, 345
+        dibujarGrande(dibujarEstrella, 3, 445, 345);
+
+        break;
+
+
+    case "luna":
+
+        // La luna originalmente está alrededor de 145, 140
+        dibujarGrande(dibujarLuna, 2.5, 145, 140);
+        break;
+
+
+    case "gato":
+
+        // El gato originalmente está alrededor de 170, 550
+        dibujarGrande(dibujarGato, 2.5, 170, 550);
+
+        break;
+
+
+    case "todas":
+
+        // Las cinco regresan a sus posiciones originales
+        dibujarTodas();
+
+        break;
+}
+}
+
+    // Mostrar todas las figuras al abrir la página
+    mostrarFigura("todas");
+
+    </script>
+
+</body>
+</html>
