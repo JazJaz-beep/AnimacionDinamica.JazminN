@@ -1,43 +1,116 @@
+
 <!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Rotational Velocity</title>
+    <title>Mi reloj animado</title>
+
     <link rel="stylesheet" href="style.css">
+
     <style>
-        canvas { 
-            background-image: url("reloj.png");
-            background-repeat: no-repeat;
-        }
+      canvas {
+        background-image: url("reloj.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 500px 500px;
+      }
     </style>
   </head>
+
   <body>
     <canvas id="canvas" width="600" height="600"></canvas>
 
-    <script src="utils.js"></script>
-    <script src="./classes/arrow.js"></script>
     <script>
-    window.onload = function () {
-      var canvas = document.getElementById('canvas'),
-          context = canvas.getContext('2d'),
-          //arrow = new Arrow(),
-          vr = .1; //degrees
-          var hora = new Image();
-          hora.src = "horas.png";
-          var radianes=0;
+      window.onload = function () {
+        const canvas = document.getElementById("canvas");
+        const context = canvas.getContext("2d");
 
-      (function drawFrame () {
-        window.requestAnimationFrame(drawFrame, canvas);
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.save();
-        context.translate(300, 300);
-        radianes += vr * Math.PI / 180; //to radians
-        context.rotate(radianes); //radians
-        context.drawImage(hora, -hora.width/2,-hora.height/2);
-        context.restore();
-      
-      }());
-    };
+        // Cargar las tres manecillas
+        const hora = new Image();
+        const minuto = new Image();
+        const segundo = new Image();
+
+        hora.src = "horas.png";
+        minuto.src = "minutos.png";
+        segundo.src = "segundos.png";
+
+        // Centro del reloj
+        const centroX = 300;
+        const centroY = 300;
+
+        // Ángulos iniciales
+        let anguloHora = 0;
+        let anguloMinuto = 0;
+        let anguloSegundo = 0;
+
+        // Velocidades aceleradas
+        // Una hora del reloj transcurre en un minuto real.
+        const velocidadHora = (2 * Math.PI) / 60;
+
+        // Los minutos avanzan 12 veces más rápido que las horas.
+        const velocidadMinuto = (2 * Math.PI) / 5;
+
+        // Los segundos avanzan 60 veces más rápido que las horas.
+        const velocidadSegundo = 2 * Math.PI;
+
+        // Dibujar cada manecilla
+        function dibujarManecilla(imagen, angulo, escala) {
+          if (!imagen.complete || !imagen.naturalWidth) return;
+
+          context.save();
+
+          context.translate(centroX, centroY);
+          context.rotate(angulo);
+
+          const ancho = imagen.width * escala;
+          const alto = imagen.height * escala;
+
+          context.drawImage(
+            imagen,
+            -ancho / 2,
+            -alto / 2,
+            ancho,
+            alto
+          );
+
+          context.restore();
+        }
+
+        // Animación
+        let tiempoAnterior = null;
+
+        function dibujarReloj(tiempoActual) {
+          requestAnimationFrame(dibujarReloj);
+
+          if (tiempoAnterior === null) {
+            tiempoAnterior = tiempoActual;
+          }
+
+          const delta = Math.min(
+            (tiempoActual - tiempoAnterior) / 1000,
+            0.1
+          );
+
+          tiempoAnterior = tiempoActual;
+
+          // Actualizar los ángulos
+          anguloHora += velocidadHora * delta;
+          anguloMinuto += velocidadMinuto * delta;
+          anguloSegundo += velocidadSegundo * delta;
+
+          // Limpiar el canvas
+          context.clearRect(
+            0, 0, canvas.width, canvas.height
+          );
+
+          // Dibujar de la más larga a la más corta
+          dibujarManecilla(minuto, anguloMinuto, 0.8);
+          dibujarManecilla(hora, anguloHora, 0.8);
+          dibujarManecilla(segundo, anguloSegundo, 0.8);
+        }
+
+        requestAnimationFrame(dibujarReloj);
+      };
     </script>
   </body>
 </html>
