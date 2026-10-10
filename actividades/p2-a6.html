@@ -1,0 +1,333 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mi Paint</title>
+
+    <style>
+        body {
+            text-align: center;
+            margin-top: 20px;
+            background-color: gray;
+            font-family: Arial, sans-serif;
+        }
+
+        canvas {
+            background-color: white;
+            cursor: crosshair;
+            max-width: 100%;
+        }
+
+        /* Botones de colores */
+        .colores {
+            width: 100%;
+            min-height: 50px;
+            text-align: center;
+        }
+
+        .colores button {
+            width: 100px;
+            height: 40px;
+            margin-right: 5px;
+            margin-top: 5px;
+            cursor: pointer;
+            border-radius: 15px;
+            border: 2px solid white;
+        }
+
+        .colores button:hover {
+            opacity: 0.7;
+        }
+
+        #black { background: black; }
+        #red { background: red; }
+        #blue { background: blue; }
+        #green { background: green; }
+        #yellow { background: #ffd700; }
+        #purple { background: purple; }
+
+        /* Botones de herramientas */
+        #otros button {
+            width: 300px;
+            max-width: 90%;
+            height: 50px;
+            background: #303030;
+            color: white;
+            font: 25px Impact, sans-serif;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 15px;
+        }
+
+        #otros button:hover {
+            opacity: 0.7;
+        }
+
+        #eraser {
+            background: #f2dede !important;
+            color: #333333 !important;
+        }
+
+        /* Controles de los sliders */
+        #grosor,
+        #opacidad {
+            margin: 15px;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
+
+        #grosor input,
+        #opacidad input {
+            width: 250px;
+            max-width: 50%;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+
+        #valorGrosor,
+        #valorOpacidad {
+            display: inline-block;
+            min-width: 50px;
+            font-weight: bold;
+        }
+
+        aside {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Paleta de colores -->
+    <div class="colores">
+        <button id="black" type="button" value="#000000"
+                aria-label="Negro"></button>
+        <button id="red" type="button" value="#ff0000"
+                aria-label="Rojo"></button>
+        <button id="blue" type="button" value="#0000ff"
+                aria-label="Azul"></button>
+        <button id="green" type="button" value="#008000"
+                aria-label="Verde"></button>
+        <button id="yellow" type="button" value="#ffd700"
+                aria-label="Amarillo"></button>
+        <button id="purple" type="button" value="#800080"
+                aria-label="Morado"></button>
+    </div>
+
+    <!-- Herramientas -->
+    <div id="otros">
+        <button id="clear" type="button">Borrar todo</button>
+        <button id="eraser" type="button">Borrador</button>
+        <button id="pintarTodo"> Pintar todo</button>
+    </div>
+
+    <!-- Slider de grosor -->
+    <div id="grosor">
+        <label for="tamano">Tamaño del pincel:</label>
+        <input type="range" id="tamano"
+               min="1" max="40" value="5">
+        <span id="valorGrosor">5 px</span>
+    </div>
+
+    <!-- Slider de opacidad -->
+    <div id="opacidad">
+        <label for="nivelOpacidad">Opacidad:</label>
+        <input type="range" id="nivelOpacidad"
+               min="10" max="100" value="100">
+        <span id="valorOpacidad">100%</span>
+    </div>
+
+    <!-- Lienzo -->
+    <canvas id="canvas" width="1000" height="700"></canvas>
+
+    <aside>Haz clic y arrastra el mouse para dibujar.</aside>
+
+    <script src="../js/util.js"></script>
+
+    <script>
+    window.onload = function () {
+
+        // Lienzo principal
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var mouse = utils.captureMouse(canvas);
+
+        // Capa donde se guardan los trazos terminados
+        var capaBase = document.createElement('canvas');
+        capaBase.width = canvas.width;
+        capaBase.height = canvas.height;
+        var base = capaBase.getContext('2d');
+
+        // Capa temporal para el trazo actual
+        var capaTrazo = document.createElement('canvas');
+        capaTrazo.width = canvas.width;
+        capaTrazo.height = canvas.height;
+        var trazo = capaTrazo.getContext('2d');
+
+        // Controles
+        var colores = document.getElementsByClassName('colores')[0];
+        var tamano = document.getElementById('tamano');
+        var valorGrosor = document.getElementById('valorGrosor');
+        var nivelOpacidad = document.getElementById('nivelOpacidad');
+        var valorOpacidad = document.getElementById('valorOpacidad');
+        var eraserButton = document.getElementById('eraser');
+        var clearButton = document.getElementById('clear');
+
+
+        // Variables del pincel
+        var colorActual = '#000000';
+        var usandoBorrador = false;
+        var dibujando = false;
+        var puntos = [];
+        var colorFondo = '#ffffff';
+
+        // Actualizar el lienzo visible
+        function actualizarLienzo() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Fondo
+    ctx.fillStyle = colorFondo;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Dibujos que ya hiciste
+    ctx.drawImage(capaBase, 0, 0);
+    ctx.drawImage(capaTrazo, 0, 0);
+}
+        // Redibujar el trazo completo sin acumular opacidad
+        function actualizarTrazo() {
+            trazo.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (puntos.length === 0) {
+                actualizarLienzo();
+                return;
+            }
+
+            trazo.beginPath();
+            trazo.moveTo(puntos[0].x, puntos[0].y);
+
+            for (var i = 1; i < puntos.length; i++) {
+                trazo.lineTo(puntos[i].x, puntos[i].y);
+            }
+
+            var grosorActual = Number(tamano.value);
+            var opacidadActual = usandoBorrador
+                ? 1
+                : Number(nivelOpacidad.value) / 100;
+
+            trazo.strokeStyle = usandoBorrador
+                ? '#ffffff'
+                : colorActual;
+
+            trazo.lineWidth = grosorActual;
+
+            trazo.globalAlpha = opacidadActual;
+            trazo.lineCap = 'round';
+            trazo.lineJoin = 'round';
+            trazo.globalCompositeOperation = 'source-over';
+
+            var pintarTodo = document.getElementById('pintarTodo');
+
+pintarTodo.addEventListener('click', function () {
+    colorFondo = colorActual;
+    actualizarLienzo();
+});
+
+            trazo.stroke();
+
+            actualizarLienzo();
+        }
+
+        // Empezar a dibujar
+        canvas.addEventListener('mousedown', function () {
+            dibujando = true;
+
+            puntos = [{
+                x: mouse.x,
+                y: mouse.y
+            }];
+
+            actualizarTrazo();
+        });
+
+        // Seguir dibujando
+        canvas.addEventListener('mousemove', function () {
+            if (!dibujando) return;
+
+            puntos.push({
+                x: mouse.x,
+                y: mouse.y
+            });
+
+            actualizarTrazo();
+        });
+
+        // Terminar el trazo
+        function terminarTrazo() {
+            if (!dibujando) return;
+
+            dibujando = false;
+
+            // Guardar el trazo terminado en la capa base
+            base.globalAlpha = 1;
+            base.globalCompositeOperation = 'source-over';
+            base.drawImage(capaTrazo, 0, 0);
+
+            // Limpiar la capa temporal
+            trazo.clearRect(0, 0, canvas.width, canvas.height);
+            puntos = [];
+
+            actualizarLienzo();
+        }
+
+        canvas.addEventListener('mouseup', terminarTrazo);
+        canvas.addEventListener('mouseleave', terminarTrazo);
+
+        // Seleccionar color
+        colores.addEventListener('click', function (event) {
+            if (!event.target.value) return;
+
+            colorActual = event.target.value;
+            usandoBorrador = false;
+        });
+
+        // Cambiar grosor
+        tamano.addEventListener('input', function () {
+            valorGrosor.textContent = tamano.value + ' px';
+
+            if (dibujando) {
+                actualizarTrazo();
+            }
+        });
+
+        // Cambiar opacidad
+        nivelOpacidad.addEventListener('input', function () {
+            valorOpacidad.textContent = nivelOpacidad.value + '%';
+
+            if (dibujando && !usandoBorrador) {
+                actualizarTrazo();
+            }
+        });
+
+        // Activar borrador
+        eraserButton.addEventListener('click', function () {
+            usandoBorrador = true;
+        });
+
+        // Borrar todo
+        clearButton.addEventListener('click', function () {
+            dibujando = false;
+            puntos = [];
+
+            base.clearRect(0, 0, canvas.width, canvas.height);
+            trazo.clearRect(0, 0, canvas.width, canvas.height);
+
+            actualizarLienzo();
+        });
+
+    };
+    </script>
+
+</body>
+</html>
