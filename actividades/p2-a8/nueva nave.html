@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ship Sim - Friction</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #canvas {
+      background-color: #000;
+      border: 2px solid #444;
+    }
+
+    aside {
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Nave espacial</h2>
+
+  <canvas id="canvas" width="800" height="500"></canvas>
+
+  <aside>
+    ← → Girar la nave<br>
+    ↑ Acelerar<br>
+    Suelta las teclas para deslizarte por el espacio.
+  </aside>
+
+  <script src="utils.js"></script>
+  <script src="minave.js"></script>
+
+  <script>
+    window.onload = function () {
+
+      var canvas = document.getElementById("canvas");
+      var context = canvas.getContext("2d");
+
+      // Fondo espacial animado
+      var background = new Image();
+      background.src = "fondo-espacio.gif";
+
+      // Crear la nave usando la clase Navecita
+      var ship = new Navecita();
+
+      // Posición inicial
+      ship.x = canvas.width / 2;
+      ship.y = canvas.height / 2;
+
+      // Tamaño de la nave
+      ship.width = 60;
+      ship.height = 60;
+
+      // Velocidad de desplazamiento
+      var vx = 0;
+      var vy = 0;
+
+      // Configuración del movimiento
+      var rotationSpeed = 3;
+      var thrust = 0.08;
+      var friction = 0.97;
+
+      // Controles del teclado
+      var keys = {
+        left: false,
+        right: false,
+        up: false
+      };
+
+      // Detectar teclas presionadas
+      window.addEventListener("keydown", function (event) {
+
+        if (
+          event.key === "ArrowLeft" ||
+          event.key === "ArrowRight" ||
+          event.key === "ArrowUp"
+        ) {
+          event.preventDefault();
+        }
+
+        if (event.key === "ArrowLeft") {
+          keys.left = true;
+        }
+
+        if (event.key === "ArrowRight") {
+          keys.right = true;
+        }
+
+        if (event.key === "ArrowUp") {
+          keys.up = true;
+        }
+      });
+
+      // Detectar cuando se sueltan las teclas
+      window.addEventListener("keyup", function (event) {
+
+        if (event.key === "ArrowLeft") {
+          keys.left = false;
+        }
+
+        if (event.key === "ArrowRight") {
+          keys.right = false;
+        }
+
+        if (event.key === "ArrowUp") {
+          keys.up = false;
+        }
+      });
+
+      // Reiniciar controles al cambiar de ventana
+      window.addEventListener("blur", function () {
+        keys.left = false;
+        keys.right = false;
+        keys.up = false;
+      });
+
+      // Dibujar el fondo sin deformarlo
+      function drawBackground() {
+
+        if (
+          background.complete &&
+          background.naturalWidth > 0
+        ) {
+
+          var imgWidth = background.naturalWidth;
+          var imgHeight = background.naturalHeight;
+
+          // Escala para cubrir todo el canvas
+          var scale = Math.max(
+            canvas.width / imgWidth,
+            canvas.height / imgHeight
+          );
+
+          var width = imgWidth * scale;
+          var height = imgHeight * scale;
+
+          // Centrar el fondo
+          var x = (canvas.width - width) / 2;
+          var y = (canvas.height - height) / 2;
+
+          context.drawImage(
+            background,
+            x,
+            y,
+            width,
+            height
+          );
+        }
+      }
+
+      // Animación principal
+      function drawFrame() {
+
+        window.requestAnimationFrame(drawFrame);
+
+        // Limpiar el canvas
+        context.clearRect(
+          0, 0,
+          canvas.width,
+          canvas.height
+        );
+
+        // Dibujar primero el fondo
+        drawBackground();
+
+        // Girar la nave
+        if (keys.left) {
+          ship.rotation -= rotationSpeed * Math.PI / 180;
+        }
+
+        if (keys.right) {
+          ship.rotation += rotationSpeed * Math.PI / 180;
+        }
+
+        // Acelerar hacia donde apunta la nave
+        if (keys.up) {
+
+          var angle = ship.rotation;
+
+          vx += Math.cos(angle) * thrust;
+          vy += Math.sin(angle) * thrust;
+
+          // Mostrar la llama
+          ship.showFlame = true;
+
+        } else {
+
+          // Ocultar la llama al soltar la tecla
+          ship.showFlame = false;
+        }
+
+        // Aplicar fricción
+        vx *= friction;
+        vy *= friction;
+
+        // Actualizar posición
+        ship.x += vx;
+        ship.y += vy;
+
+        // Screen wrapping horizontal
+        if (ship.x - ship.width / 2 > canvas.width) {
+          ship.x = -ship.width / 2;
+        } else if (ship.x + ship.width / 2 < 0) {
+          ship.x = canvas.width + ship.width / 2;
+        }
+
+        // Screen wrapping vertical
+        if (ship.y - ship.height / 2 > canvas.height) {
+          ship.y = -ship.height / 2;
+        } else if (ship.y + ship.height / 2 < 0) {
+          ship.y = canvas.height + ship.height / 2;
+        }
+
+        // Dibujar la nave y su llama
+        ship.draw(context);
+      }
+
+      // Iniciar animación
+      drawFrame();
+
+    };
+  </script>
+
+</body>
+</html>
