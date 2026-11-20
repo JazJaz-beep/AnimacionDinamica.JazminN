@@ -1,378 +1,477 @@
-<!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <title> Carpeta de actividades</title>
-        
-        <link rel="stylesheet" href="CSS/estilosIndex.css">
 
-        
-    
-           <!-- Fuente pixel -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Carpeta de actividades | JNH</title>
+
+    <!-- FUENTE PIXEL -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!--<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> -->
-        <style>
-                    html, body, div, span, applet, object, iframe,
-        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-        a, abbr, acronym, address, big, cite, code,
-        del, dfn, em, img, ins, kbd, q, s, samp,
-        small, strike, strong, sub, sup, tt, var,
-        b, u, i, center,
-        dl, dt, dd, ol, ul, li,
-        fieldset, form, label, legend,
-        table, caption, tbody, tfoot, thead, tr, th, td,
-        article, aside, canvas, details, embed, 
-        figure, figcaption, footer, header, hgroup, 
-        menu, nav, output, ruby, section, summary,
-        time, mark, audio, video {
-	        margin: 0;
-	        padding: 0;
-	        border: 0;
-	        font-size: 100%;
-	        font: inherit;
-	        vertical-align: baseline;
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+
+    <style>
+
+        /* =====================================
+           RESET
+        ===================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        /* HTML5 display-role reset for older browsers */
-        article, aside, details, figcaption, figure, 
-        footer, header, hgroup, menu, nav, section {
-	        display: block;
+
+        html {
+            scroll-behavior: smooth;
         }
+
         body {
-    	    line-height: 1;
-        }   
-        ol, ul {
-	        list-style: none;
-        }
-        blockquote, q {
-	        quotes: none;
-        }
-        blockquote:before, blockquote:after,
-        q:before, q:after {
-        	    content: '';
-        	    content: none;
-            }
-        table {
-    	    border-collapse: collapse;
-	        border-spacing: 0;
+            background: #faf9f5;
+            color: #123d5b;
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
         }
 
-
-            /*-----------------------------------
-            ------------FIN DEL RESET--------- 
-            ----------------------------------*/
-
-            
-        body {
-        background: #faf9f5;
-        color: #123d5b;
-        font-family: Arial, sans-serif;
-
-			    min-height: 100vh;
-    	display: flex;
-    	flex-direction: column;
-			}
-
-			
         a {
             text-decoration: none;
             color: inherit;
         }
 
+
+        /* =====================================
+           ENCABEZADO / NAVEGACIÓN
+        ===================================== */
+
         .arriba {
-        width: 92%;
-        margin: auto;
+            width: 92%;
+            margin: auto;
 
-        height: 50px;
+            min-height: 60px;
 
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-        border-bottom: 1px dotted #7897aa;
-        }
-        
-        .arriba nav {
-        display: flex;
-        gap: 10px;
-        }
-
-        .arriba nav a {
-        font-family: "Press Start 2P", monospace;
-        font-size: 10px;
-
-        padding: 5px ;
-
-        transition: .2s;
-        }
-
-        .arriba nav a:hover {
-        border-bottom: 2px solid #6d9dca;
+            border-bottom: 1px dotted #7897aa;
         }
 
         .nombre {
             font-family: "Press Start 2P", monospace;
             font-size: 10px;
+        }
 
+        .arriba nav {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            gap: 20px;
+        }
+
+        .arriba nav a {
+            font-family: "Press Start 2P", monospace;
+            font-size: 9px;
+
+            padding: 5px;
+
+            transition: .2s;
+        }
+
+        .arriba nav a:hover {
+            color: #6d9dca;
+            border-bottom: 2px solid #6d9dca;
         }
 
 
-        /* ================================================== */        
-            img {
-                width: 30%;
-                height: auto;
-                bottom: 50px;
-
-                position: absolute;
-            right: 50px;
-                /*width: 100%;
-                width: 160px;*/
-
-            
-            }
+        /* =====================================
+           PORTADA PRINCIPAL
+        ===================================== */
 
         .principal {
-       
-        flex: 1;
-    	margin: auto;
-    	width: 100%;
+            min-height: 430px;
 
-    	position: relative;
-    	display: flex;
-    	justify-content: center;
-    	align-items: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-    	text-align: center;
-	}	
+            padding: 50px 5%;
+        }
 
+        .presentacion {
+            width: 100%;
+            max-width: 1000px;
 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-    .principal h1 {
-    font-family: Georgia, serif;
+            gap: 30px;
+        }
 
-    font-size: clamp(70px, 10vw, 130px);
+        .texto-principal h1 {
+            font-family: Georgia, serif;
 
-    line-height: .8;
+            font-size: clamp(70px, 10vw, 130px);
+            line-height: .8;
 
-    color: #073b5d;
+            color: #073b5d;
 
-    letter-spacing: -5px;
-    }
+            letter-spacing: -5px;
+        }
 
-    .principal p {
-    font-family: "Press Start 2P", monospace;
+        .texto-principal p {
+            font-family: "Press Start 2P", monospace;
 
-    font-size: 9px;
+            font-size: 9px;
+            line-height: 2;
 
-    line-height: 1.8;
+            margin-top: 30px;
+        }
 
-    margin: 25px 0;
-    }
-
-    
-
-.button {
-    display: inline-block;
-
-    border: 2px solid #174966;
-    border-radius: 12px;
-
-    padding: 12px 22px;
-
-    font-family: "Press Start 2P", monospace;
-    font-size: 8px;
-
-    background: #faf9f5;
-
-    transition: .2s;
-}
-
-.button:hover {
-    background: #174966;
-    color: white;
-}
+        .presentacion img {
+            width: 30%;
+            max-width: 300px;
+            height: auto;
+        }
 
 
+        /* =====================================
+           SECCIÓN DE ACTIVIDADES
+        ===================================== */
+
+        .actividades {
+            width: 85%;
+            max-width: 1000px;
+
+            margin: 20px auto 80px;
+        }
+
+        .parcial {
+            padding: 35px 0;
+
+            border-top: 1px solid #b5c5cc;
+
+            scroll-margin-top: 30px;
+        }
+
+        .titulo-parcial {
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+        }
+
+        .titulo-parcial span {
+            font-family: "Press Start 2P", monospace;
+            font-size: 12px;
+
+            color: #6d9dca;
+        }
+
+        .titulo-parcial h2 {
+            font-family: Georgia, serif;
+            font-size: 32px;
+        }
 
 
+        /* =====================================
+           BOTONES DE ACTIVIDADES
+        ===================================== */
+
+        .lista-actividades {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+
+            min-height: 55px;
+
+            padding: 15px 20px;
+
+            border: 1px solid #174966;
+            border-radius: 10px;
+
+            background: #faf9f5;
+
+            font-family: "Press Start 2P", monospace;
+            font-size: 8px;
+
+            line-height: 1.8;
+
+            transition: .2s;
+        }
+
+        .button:hover {
+            background: #174966;
+            color: white;
+
+            transform: translateY(-3px);
+        }
+
+
+        /* =====================================
+           PIE DE PÁGINA
+        ===================================== */
 
         .pie {
-        /*grid-column: 1 / -1;*/
+            margin-top: auto;
 
-        border-top: 1px solid #0a0a0b;
-        border-radius: 1cm;
+            padding: 25px 5%;
 
-        padding: 20px;
-        padding-left: 50px;
-        padding-right: 50px;
+            border-top: 1px solid #7897aa;
 
-        display: flex;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-        justify-content: space-between;
+            font-family: "Press Start 2P", monospace;
+            font-size: 8px;
+        }
 
-        font-family: "Press Start 2P", monospace;
 
-        font-size: 10px;
-}
-        </style>
-        
+        /* =====================================
+           RESPONSIVE / PANTALLAS PEQUEÑAS
+        ===================================== */
 
-    </head>
+        @media (max-width: 650px) {
 
-    <body>
+            .arriba {
+                flex-direction: column;
 
-        <header class="arriba">
+                padding: 20px 0;
+                gap: 20px;
+            }
 
-            <div class="nombre">
-                J N H
-            </div>
+            .arriba nav {
+                gap: 10px;
+            }
 
-            <nav>
-                 <a href="#" id="inicio" >INICIO</a>
-                <a href="#" id="siguiente" >SIGUIENTE</a>
-                <a href="#" id="anterior">ANTERIOR</a>
-                <a href="#"id="ultimo" >ULTIMO</a>
-            </nav>
+            .arriba nav a {
+                font-size: 7px;
+            }
 
-        </header>
+            .presentacion {
+                flex-direction: column;
+                text-align: center;
+            }
 
-        <div class="imagen">
-                <img src="IMG/gatocorbata.png" alt="1">
-            </div>
+            .presentacion img {
+                width: 50%;
+            }
 
-         <section class="principal">
+            .lista-actividades {
+                grid-template-columns: 1fr;
+            }
 
-            <div class="Botones">
+            .titulo-parcial h2 {
+                font-size: 25px;
+            }
+
+            .pie {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         ENCABEZADO
+    ===================================== -->
+
+    <header class="arriba">
+
+        <div class="nombre">
+            J N H
+        </div>
+
+        <nav>
+            <a href="#inicio">INICIO</a>
+            <a href="#parcial1">P1</a>
+            <a href="#parcial2">P2</a>
+            <a href="#final">FINAL</a>
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================
+         PORTADA
+    ===================================== -->
+
+    <section class="principal" id="inicio">
+
+        <div class="presentacion">
+
+            <div class="texto-principal">
 
                 <h1>
                     Mis<br>
-                    Trabajos 
+                    Trabajos
                 </h1>
 
                 <p>
-                    Actividades de la materia<br>
+                    ACTIVIDADES DE LA MATERIA<br>
                     ANIMACIÓN DINÁMICA :D
                 </p>
 
-                <div>
+            </div>
+
+            <img src="IMG/gatocorbata.png" alt="Gatito con corbata">
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         ACTIVIDADES
+    ===================================== -->
+
+    <main class="actividades">
+
+
+        <!-- PRIMER PARCIAL -->
+
+        <section class="parcial" id="parcial1">
+
+            <div class="titulo-parcial">
+
+                <span>01</span>
+
+                <h2>Primer parcial</h2>
+
+            </div>
+
+
+            <div class="lista-actividades">
+
                 <a href="actividades/A1.html" class="button">
-                    A2 - Página html básica
+                    A2 - Página HTML básica
                 </a>
-            </div>
-            <BR>
-            
-                <div>
+
                 <a href="actividades/A2.html" class="button">
-                    Part1 - Página Golden Globes 
+                    Part 1 - Página Golden Globes
                 </a>
-            </div>
-            <BR>
-                
+
                 <a href="actividades/A4.html" class="button">
                     A4 - Arte en CANVAS
                 </a>
-            <BR>
-                <br>
-                
+
                 <a href="actividades/A5.html" class="button">
-                    Part2 - Reto en canvas
+                    Part 2 - Reto en Canvas
                 </a>
-            <BR>
-                <br>
-             
+
                 <a href="actividades/08-canvasInteractivo" class="button">
                     Proyecto - Interactivo con el teclado
                 </a>
-            <BR>
-                 <br>
-                <p>Parcial 2
-                </p>
-                
-                <a href="actividades/P2 - A1.html" class="button">
-                    A2 - Animación rotación al mouse
-                </a>
-            <BR>
 
-                <br>
-                
-                <a href="actividades/p2-a2.html" class="button">
-                    A3 - Animación con onda sinoidal/coseno
-                </a>
-            <BR>
-
-                <br>
-                
-                <a href="actividades/p2-a3.html" class="button">
-                    A4 - Reto onda sinoidal 
-                </a>
-            <BR>
-
-                <br>
-                
-                <a href="actividades/p2-a4.html" class="button">
-                   A5 - Dibujo de figuras en el canvas 
-                </a>
-            <BR>
----------------
-                <br>
-                
-                <a href="actividades/p2-a6.html" class="button">
-                  A6 - Paint App personalizado 
-                </a>
-            <BR>
-                
-                <br>
-                
-                <a href="actividades/reloj/p2-a5.html" class="button">
-                   A7 - Simulación de reloj 
-                </a>
-            <BR>
-
-                <br>
-                
-                <a href="actividades/p2-a8/nueva nave.html" class="button">
-                   A8 - Nave
-                </a>
-            <BR>
-
-                <br>
-                
-                <a href="actividades/p2-a9/p2-a9.html" class="button">
-                   A2 - Modelo 3D en el model-viewer 
-                </a>
-            <BR>
-    
-
-                
-
-
-
-
-                <br><br><br>
             </div>
-
 
         </section>
 
-        <!------ ESTE ES EL FOOTER PERO SIENTO QUE NO ESTA FUNCIONANDO lol
-        <footer>
 
-            <div class="pie">
 
-             <span>39891</span>
+        <!-- SEGUNDO PARCIAL -->
 
-                <span>Animación Dinámica</span>
+        <section class="parcial" id="parcial2">
+
+            <div class="titulo-parcial">
+
+                <span>02</span>
+
+                <h2>Segundo parcial</h2>
 
             </div>
 
-        </footer>
 
-        ---->
+            <div class="lista-actividades">
 
-        <script src="js/navegacion.js"></script>
+                <a href="actividades/P2 - A1.html" class="button">
+                    A2 - Animación rotación al mouse
+                </a>
 
-    </body>
+                <a href="actividades/p2-a2.html" class="button">
+                    A3 - Animación con onda sinoidal/coseno
+                </a>
+
+                <a href="actividades/p2-a3.html" class="button">
+                    A4 - Reto onda sinoidal
+                </a>
+
+                <a href="actividades/p2-a4.html" class="button">
+                    A5 - Dibujo de figuras en Canvas
+                </a>
+
+                <a href="actividades/p2-a6.html" class="button">
+                    A6 - Paint App personalizado
+                </a>
+
+                <a href="actividades/reloj/p2-a5.html" class="button">
+                    A7 - Simulación de reloj
+                </a>
+
+                <a href="actividades/p2-a8/nueva nave.html" class="button">
+                    A8 - Nave
+                </a>
+
+                <a href="actividades/p2-a9/p2-a9.html" class="button">
+                    A9 - Modelo 3D en model-viewer
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================
+         FOOTER
+    ===================================== -->
+
+    <footer class="pie" id="final">
+
+        <span>39891</span>
+
+        <span>ANIMACIÓN DINÁMICA</span>
+
+        <span>J N H © 2026</span>
+
+    </footer>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script src="js/navegacion.js"></script>
+
+
+</body>
 </html>
